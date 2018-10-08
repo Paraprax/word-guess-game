@@ -12,6 +12,30 @@
 
 <h1>Can you guess the letters of the secret word?</h1>
 
+<script>
+
+    // array of secret words
+    var words = ["Gozer", "Betelgeuse", "Pinhead", "Terminator", "Chucky"]
+
+    // for loop keeping track of rounds
+    for (r = 0; r < 5; r++) {
+
+    }
+
+
+    document.onkeyup = function(event) {
+          var letter = String.fromCharCode(event.keyCode).toLowerCase();
+          if (letter == "x") {
+            console.log("Correct!");
+          }
+          else {
+              console.log("You chose.... poorly.")
+          }
+        
+        }
+
+</script>
+
 
     
 </body>
