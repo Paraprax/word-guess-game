@@ -37,45 +37,51 @@
 
     // ~~~~ ACTUAL GAME LOGIC: ~~~~
 
-    // while (lettersLeft > 0) { 
+    // while (lettersLeft > 0) { (commented out for now)
+
+        console.log(marquee.join(" "));
+
+        console.log(secretWord);
             
 
         // empty array to hold user letter-input grabbed by event-listener later
         var guess = [];
     
 
-        /* for-loop comparing each letter in 'secretWord' to the guessed letter. If one matches, it replaces
-        the corresponding underscore in 'marquee'(ie. has the same index-position as the letter in 'secretWord')
-        with the guessed letter */
-        for (var g = 0; g < secretWord.length; g++) {
-
-            if (secretWord[g] == guess) {
-
-                marquee[j] = guess;
-
-                lettersLeft--;
-            }
-        }
-
         var lettersLeft = secretWord.length;
 
         // for-loop keeping track of rounds
-        for (r = 0; r < 8; r++) {
+        for (r = 0; r < secretWord.length; r++) 
+        {
 
             //keypress event-listener
-            document.onkeyup = function(event) {
-            var guess = String.fromCharCode(event.keyCode).toLowerCase();
-            
-            if (guess == "x") {
-                console.log("Correct!");
-            }
-            else {
-                console.log("You chose.... poorly.")
-            }
-            
-            }
-            
+            document.onkeyup = function(event) 
+            {
+                var guess = String.fromCharCode(event.keyCode).toLowerCase();
 
+                console.log(guess);
+
+                /* for-loop comparing each letter in 'secretWord' to the guessed letter. 
+                If one matches, it replaces the corresponding underscore in 'marquee'
+                (ie. has the same index-position as the letter in 'secretWord') with 
+                the guessed letter */
+                for (var i = 0; i < secretWord.length; i++) //every time you enter a letter, it runs this whole loop
+                {                                           //AS MANY TIMES as there are letters in secretWord
+
+                    if (secretWord[i] == guess)
+                    {
+                        marquee[i] = guess;
+
+                        lettersLeft--;
+
+                        console.log(marquee);;
+
+                    }
+
+                }
+            
+            }
+            
         }
 
         
