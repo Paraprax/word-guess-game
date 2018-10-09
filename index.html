@@ -20,23 +20,26 @@
     // picks a word from the array via a random index number
     var secretWord = words[Math.floor(Math.random() * words.length)];
 
+    // generates an array of underscores as blanks to match the number of letters in the secret word
     var marquee = [];
-
-    var guess = [];
-
-    var secretWord = words[Math.floor(Math.random() * words.length)];
-
-    // for-loop adding as many underscores to the marquee as there are letters in the secret word
-    for (var a = 0; a < word.length; a++) { 
+    for (var a = 0; a < secretWord.length; a++) {
 
         marquee[a] = "_";
 
     }
 
+    /* keeps track of the unguessed letters left in 'secretWord', initialized with the total number of letters
+    in the secretWord string. Later our game loop will subtract 1 from this number for each correct guess*/
+    var lettersLeft = secretWord.length;
+
+    // empty array to hold user letter-input grabbed by event-listener later
+    var guess = [];
+   
+
     /* for-loop comparing each letter in 'secretWord' to the guessed letter. If one matches, it replaces
     the corresponding underscore in 'marquee'(ie. has the same index-position as the letter in 'secretWord')
     with the guessed letter */
-    for (var g = 0; g < word.length; g++) {
+    for (var g = 0; g < secretWord.length; g++) {
 
         if (secretWord[g] == guess) {
 
@@ -46,15 +49,15 @@
         }
     }
 
-    var remainingLetters = word.length;
+    var lettersLeft = secretWord.length;
 
     // for-loop keeping track of rounds
     for (r = 0; r < 8; r++) {
 
         document.onkeyup = function(event) {
-        var letter = String.fromCharCode(event.keyCode).toLowerCase();
+        var guess = String.fromCharCode(event.keyCode).toLowerCase();
           
-          if (letter == "x") {
+          if (guess == "x") {
             console.log("Correct!");
           }
           else {
