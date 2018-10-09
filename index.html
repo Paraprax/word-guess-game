@@ -12,11 +12,13 @@
 
 <h1>Can you guess the letters of the secret word?</h1>
 
+<h3 id=marquee></h3>
+
 <script>
 
     // array of secret words
     var words = ["chameleon", "vulture", "sandman", "electro", "kraven", "mysterio", "shocker", "venom"]
-    
+        
     // picks a word from the array via a random index number
     var secretWord = words[Math.floor(Math.random() * words.length)];
 
@@ -32,45 +34,52 @@
     in the secretWord string. Later our game loop will subtract 1 from this number for each correct guess*/
     var lettersLeft = secretWord.length;
 
-    // empty array to hold user letter-input grabbed by event-listener later
-    var guess = [];
-   
 
-    /* for-loop comparing each letter in 'secretWord' to the guessed letter. If one matches, it replaces
-    the corresponding underscore in 'marquee'(ie. has the same index-position as the letter in 'secretWord')
-    with the guessed letter */
-    for (var g = 0; g < secretWord.length; g++) {
+    // ~~~~ ACTUAL GAME LOGIC: ~~~~
 
-        if (secretWord[g] == guess) {
+    // while (lettersLeft > 0) { 
+            
 
-            marquee[j] = guess;
+        // empty array to hold user letter-input grabbed by event-listener later
+        var guess = [];
+    
 
-            lettersLeft--;
+        /* for-loop comparing each letter in 'secretWord' to the guessed letter. If one matches, it replaces
+        the corresponding underscore in 'marquee'(ie. has the same index-position as the letter in 'secretWord')
+        with the guessed letter */
+        for (var g = 0; g < secretWord.length; g++) {
+
+            if (secretWord[g] == guess) {
+
+                marquee[j] = guess;
+
+                lettersLeft--;
+            }
         }
-    }
 
-    var lettersLeft = secretWord.length;
+        var lettersLeft = secretWord.length;
 
-    // for-loop keeping track of rounds
-    for (r = 0; r < 8; r++) {
+        // for-loop keeping track of rounds
+        for (r = 0; r < 8; r++) {
 
-        document.onkeyup = function(event) {
-        var guess = String.fromCharCode(event.keyCode).toLowerCase();
-          
-          if (guess == "x") {
-            console.log("Correct!");
-          }
-          else {
-              console.log("You chose.... poorly.")
-          }
-        
+            //keypress event-listener
+            document.onkeyup = function(event) {
+            var guess = String.fromCharCode(event.keyCode).toLowerCase();
+            
+            if (guess == "x") {
+                console.log("Correct!");
+            }
+            else {
+                console.log("You chose.... poorly.")
+            }
+            
+            }
+            
+
         }
-          
+
         
-
-    }
-
-    //keypress event-listener
+    // } // while-loop closer
    
           
 
