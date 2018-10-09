@@ -15,16 +15,45 @@
 <script>
 
     // array of secret words
-    var words = ["Gozer", "Betelgeuse", "Pinhead", "Terminator", "Chucky"]
+    var words = ["chameleon", "vulture", "sandman", "electro", "kraven", "mysterio", "shocker", "venom"]
+    
+    // picks a word from the array via a random index number
+    var secretWord = words[Math.floor(Math.random() * words.length)];
 
-    // for loop keeping track of rounds
-    for (r = 0; r < 5; r++) {
+    var marquee = [];
+
+    var guess = [];
+
+    var secretWord = words[Math.floor(Math.random() * words.length)];
+
+    // for-loop adding as many underscores to the marquee as there are letters in the secret word
+    for (var a = 0; a < word.length; a++) { 
+
+        marquee[a] = "_";
 
     }
 
+    /* for-loop comparing each letter in 'secretWord' to the guessed letter. If one matches, it replaces
+    the corresponding underscore in 'marquee'(ie. has the same index-position as the letter in 'secretWord')
+    with the guessed letter */
+    for (var g = 0; g < word.length; g++) {
 
-    document.onkeyup = function(event) {
-          var letter = String.fromCharCode(event.keyCode).toLowerCase();
+        if (secretWord[g] == guess) {
+
+            marquee[j] = guess;
+
+            lettersLeft--;
+        }
+    }
+
+    var remainingLetters = word.length;
+
+    // for-loop keeping track of rounds
+    for (r = 0; r < 8; r++) {
+
+        document.onkeyup = function(event) {
+        var letter = String.fromCharCode(event.keyCode).toLowerCase();
+          
           if (letter == "x") {
             console.log("Correct!");
           }
@@ -33,6 +62,14 @@
           }
         
         }
+          
+        
+
+    }
+
+    //keypress event-listener
+   
+          
 
 </script>
 
