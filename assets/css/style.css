@@ -23,8 +23,17 @@ body {
     text-align: center;
 }
 
+#webman {
+    width: 400px;
+    margin-left: 35%;
+    margin-top: 2%;
+    margin-right: 34%; 
+}
+
 #wrongos {
-    color: red;
+    color: rgb(255, 207, 117);
     text-align: center;
 }
+
+
 
