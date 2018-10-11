@@ -16,6 +16,10 @@ function marqueeBuilder() {
     }
 }
 
+// an array to gather the non-matching guess letters
+var wrongAnswers = [];{
+}
+
 /* keeps track of the unguessed letters left in 'secretWord', initialized with the total number of letters
 in the secretWord string. Later our game loop will subtract 1 from this number for each correct guess*/
 var lettersLeft = secretWord.length;
@@ -28,6 +32,10 @@ var lettersLeft = secretWord.length;
 /* prints the marquee to its span element with current contents of array*/
 function updateMarquee () {
     document.getElementById('marquee').innerHTML = (marquee);
+}
+
+function updateWrongos () {
+    document.getElementById('wrongos').innerHTML = (wrongAnswers);
 }
 
 // sets up the game values as they should be at the beginning of any round
@@ -85,6 +93,7 @@ function reset () {
                 if (i == secretWord.length && foundOne == false)
                 {
                     console.log("Wrong!");
+                    wrongAnswers.push(" " + guess);
                 }
 
                 // if all the letters are successfully guessed
@@ -95,6 +104,7 @@ function reset () {
                 }
 
                 updateMarquee();
+                updateWrongos ();
             
             }
             
