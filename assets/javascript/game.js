@@ -38,24 +38,25 @@ function updateWrongos () {
     document.getElementById('wrongos').innerHTML = (wrongAnswers);
 }
 
+function resetWrongAnswers () {
+    wrongAnswers = [];
+}
+
 // sets up the game values as they should be at the beginning of any round
 function reset () {
     console.log(marquee.join(" "));
     console.log(secretWord);
     marqueeBuilder();
     updateMarquee();
+    resetWrongAnswers();
 }
 
 
-// ~~~~ ACTUAL GAME LOGIC: ~~~~
-
-
-    //resets the game
-    
-        
+// ~~~~ ACTUAL GAME FUNCTION: ~~~~ (runs when button is clicked)
 
     function hangman() {
 
+        //resets the game
         reset();
 
         // for-loop keeping track of rounds
@@ -103,6 +104,13 @@ function reset () {
                     reset();
                 }
 
+                if (wrongAnswers.length == 10)
+                {
+                    console.log("YOU LOSE!");
+                    reset();
+                }
+
+                //the marquee and wrong answers are updated after each keystroke
                 updateMarquee();
                 updateWrongos ();
             
