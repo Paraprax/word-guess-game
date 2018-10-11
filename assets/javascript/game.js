@@ -66,6 +66,7 @@ function reset () {
     marqueeBuilder();
     updateMarquee();
     resetWrongAnswers();
+    updateWrongos();
     clearMessages();
 }
 
