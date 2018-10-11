@@ -1,7 +1,7 @@
 
 
 // array of secret words
-var words = ["chameleon", "vulture", "sandman", "electro", "kraven", "mysterio", "shocker", "venom"]
+var words = ["chameleon", "vulture", "sandman", "electro", "kraven", "mysterio", "shocker", "venom", "rhino", "hobgoblin", "carnage", "morbius", "kingpin", "scorpion",]
     
 // picks a word from the array via a random index number
 var secretWord = words[Math.floor(Math.random() * words.length)];
