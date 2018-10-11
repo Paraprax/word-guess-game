@@ -38,8 +38,25 @@ function updateWrongos () {
     document.getElementById('wrongos').innerHTML = (wrongAnswers);
 }
 
+function resetLettersLeft () {
+    lettersLeft = secretWord.length;
+}
+
 function resetWrongAnswers () {
     wrongAnswers = [];
+}
+
+function winMessage () {
+    document.getElementById('winMessage').innerHTML = ("You win!");
+}
+
+function loseMessage () {
+    document.getElementById('loseMessage').innerHTML = ("You lose!");
+}
+
+function clearMessages () {
+    document.getElementById('winMessage').innerHTML = ("");
+    document.getElementById('loseMessage').innerHTML = ("");
 }
 
 // sets up the game values as they should be at the beginning of any round
@@ -49,6 +66,7 @@ function reset () {
     marqueeBuilder();
     updateMarquee();
     resetWrongAnswers();
+    clearMessages();
 }
 
 
@@ -79,11 +97,17 @@ function reset () {
                 for (var i = 0; i < secretWord.length; i++) //every time you enter a letter, it runs this whole loop
                 {                                           //FOR EVERY letter in secretWord
 
-                    if (secretWord[i] == guess) // if the letter guessed matches a letter in the secret word
+                    if (secretWord[i] == guess && marquee[i] == "_" ) // if the letter guessed matches a letter in the secret word, 
+                                                                      // && that spot hasn't already been filled(prevents cheating by guessing one correct letter over and over)
                     {
                         marquee[i] = guess;     //replace the blank in marquee with that letter
                         lettersLeft--;          //subtract 1 from the # of letterLeft
                         foundOne = true;        
+                    }
+                    else if (secretWord[i] == guess) // if the letter's been guessed already, it neither counts
+                                                     // toward the lettersLeft count or wrongAnswer array
+                    {
+                        foundOne = true;                
                     }
 
                 }
@@ -93,21 +117,18 @@ function reset () {
                 // if NO letter matched the guess during any run of the loop, foundOne will stay false and....
                 if (i == secretWord.length && foundOne == false)
                 {
-                    console.log("Wrong!");
                     wrongAnswers.push(" " + guess);
                 }
 
                 // if all the letters are successfully guessed
                 if (lettersLeft == 0)
                 {
-                    console.log("YOU WIN!");
-                    reset();
+                    winMessage();
                 }
 
                 if (wrongAnswers.length == 10)
                 {
-                    console.log("YOU LOSE!");
-                    reset();
+                    loseMessage();
                 }
 
                 //the marquee and wrong answers are updated after each keystroke
