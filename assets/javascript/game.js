@@ -8,14 +8,21 @@ var secretWord = words[Math.floor(Math.random() * words.length)];
 
 // generates an array of underscores as blanks to match the number of letters in the secret word
 var marquee = [];
-for (var a = 0; a < secretWord.length; a++) {
+function marqueeBuilder() {
+    for (var a = 0; a < secretWord.length; a++) {
 
-    marquee[a] = "_";
+        marquee[a] = "_";
 
+    }
 }
 
 /* keeps track of the unguessed letters left in 'secretWord', initialized with the total number of letters
 in the secretWord string. Later our game loop will subtract 1 from this number for each correct guess*/
+var lettersLeft = secretWord.length;
+
+// empty array to hold user letter-input grabbed by event-listener later
+var guess = [];
+
 var lettersLeft = secretWord.length;
 
 /* prints the marquee to its span element with current contents of array*/
@@ -23,22 +30,21 @@ function updateMarquee () {
     document.getElementById('marquee').innerHTML = (marquee);
 }
 
+// sets up the game values as they should be at the beginning of any round
+function reset () {
+    console.log(marquee.join(" "));
+    console.log(secretWord);
+    marqueeBuilder();
+    updateMarquee();
+}
+
 
 // ~~~~ ACTUAL GAME LOGIC: ~~~~
 
-// while (lettersLeft > 0) { (commented out for now)
 
-    console.log(marquee.join(" "));
-
-    console.log(secretWord);
-
-    updateMarquee();
+    //resets the game
+    reset();
         
-
-    // empty array to hold user letter-input grabbed by event-listener later
-    var guess = [];
-
-    var lettersLeft = secretWord.length;
 
     // for-loop keeping track of rounds
     for (r = 0; r < secretWord.length; r++) 
@@ -68,10 +74,21 @@ function updateMarquee () {
                 }
 
             }
+
+            console.log(lettersLeft);
             
             // if NO letter matched the guess during any run of the loop, foundOne will stay false and....
             if (i == secretWord.length && foundOne == false)
-            {console.log("Wrong!");}
+            {
+                console.log("Wrong!");
+            }
+
+            // if all the letters are successfully guessed
+            if (lettersLeft == 0)
+            {
+                console.log("YOU WIN!");
+                reset();
+            }
 
             updateMarquee();
         
