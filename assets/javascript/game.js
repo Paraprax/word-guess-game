@@ -43,57 +43,62 @@ function reset () {
 
 
     //resets the game
-    reset();
+    
         
 
-    // for-loop keeping track of rounds
-    for (r = 0; r < secretWord.length; r++) 
-    {
+    function hangman() {
 
-        //keypress event-listener
-        document.onkeyup = function(event) 
+        reset();
+
+        // for-loop keeping track of rounds
+        for (r = 0; r < secretWord.length; r++) 
         {
-            var guess = String.fromCharCode(event.keyCode).toLowerCase();
 
-            var foundOne = false;
+            //keypress event-listener
+            document.onkeyup = function(event) 
+            {
+                var guess = String.fromCharCode(event.keyCode).toLowerCase();
 
-            console.log(guess);
+                var foundOne = false;
 
-            /* for-loop comparing each letter in 'secretWord' to the guessed letter. 
-            If one matches, it replaces the corresponding underscore in 'marquee'
-            (ie. has the same index-position as the letter in 'secretWord') with 
-            the guessed letter */
-            for (var i = 0; i < secretWord.length; i++) //every time you enter a letter, it runs this whole loop
-            {                                           //FOR EVERY letter in secretWord
+                console.log(guess);
 
-                if (secretWord[i] == guess) // if the letter guessed matches a letter in the secret word
-                {
-                    marquee[i] = guess;     //replace the blank in marquee with that letter
-                    lettersLeft--;          //subtract 1 from the # of letterLeft
-                    foundOne = true;        
+                /* for-loop comparing each letter in 'secretWord' to the guessed letter. 
+                If one matches, it replaces the corresponding underscore in 'marquee'
+                (ie. has the same index-position as the letter in 'secretWord') with 
+                the guessed letter */
+                for (var i = 0; i < secretWord.length; i++) //every time you enter a letter, it runs this whole loop
+                {                                           //FOR EVERY letter in secretWord
+
+                    if (secretWord[i] == guess) // if the letter guessed matches a letter in the secret word
+                    {
+                        marquee[i] = guess;     //replace the blank in marquee with that letter
+                        lettersLeft--;          //subtract 1 from the # of letterLeft
+                        foundOne = true;        
+                    }
+
                 }
 
-            }
+                console.log(lettersLeft);
+                
+                // if NO letter matched the guess during any run of the loop, foundOne will stay false and....
+                if (i == secretWord.length && foundOne == false)
+                {
+                    console.log("Wrong!");
+                }
 
-            console.log(lettersLeft);
+                // if all the letters are successfully guessed
+                if (lettersLeft == 0)
+                {
+                    console.log("YOU WIN!");
+                    reset();
+                }
+
+                updateMarquee();
             
-            // if NO letter matched the guess during any run of the loop, foundOne will stay false and....
-            if (i == secretWord.length && foundOne == false)
-            {
-                console.log("Wrong!");
             }
-
-            // if all the letters are successfully guessed
-            if (lettersLeft == 0)
-            {
-                console.log("YOU WIN!");
-                reset();
-            }
-
-            updateMarquee();
-        
+            
         }
-        
     }
 
 
