@@ -12,7 +12,7 @@
 
 <h1>Can you guess the letters of the secret word?</h1>
 
-<h3 id=marquee></h3>
+<h3><span id=marquee></span></h3>
 
 <script>
 
@@ -59,6 +59,8 @@
             {
                 var guess = String.fromCharCode(event.keyCode).toLowerCase();
 
+                var foundOne = false;
+
                 console.log(guess);
 
                 /* for-loop comparing each letter in 'secretWord' to the guessed letter. 
@@ -66,19 +68,22 @@
                 (ie. has the same index-position as the letter in 'secretWord') with 
                 the guessed letter */
                 for (var i = 0; i < secretWord.length; i++) //every time you enter a letter, it runs this whole loop
-                {                                           //AS MANY TIMES as there are letters in secretWord
+                {                                           //FOR EVERY letter in secretWord
 
-                    if (secretWord[i] == guess)
+                    if (secretWord[i] == guess) // if the letter guessed matches a letter in the secret word
                     {
-                        marquee[i] = guess;
-
-                        lettersLeft--;
-
-                        console.log(marquee);;
-
+                        marquee[i] = guess;     //replace the blank in marquee with that letter
+                        lettersLeft--;          //subtract 1 from the # of letterLeft
+                        foundOne = true;        
                     }
 
                 }
+                
+                // if NO letter matched the guess during any run of the loop, foundOne will stay false and....
+                if (i == secretWord.length && foundOne == false)
+                {console.log("Wrong!");}
+
+                console.log(marquee);
             
             }
             
