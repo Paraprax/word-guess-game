@@ -5,18 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/Users/Parker/src/word-guess-game/assets/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <title>Word Guess Game</title>
 </head>
 
 <body>
 
-    <h1>Can you guess the letters of the secret word?</h1>
+    <h1 id="challenge">Can you guess the letters of the secret word?</h1>
 
-    <h3><span id=marquee></span></h3>
+    <h3><span id=marquee></span></h3><br>
 
     <h4><span id=wrongos></span></h2>
 
-    <button onclick="hangman()">Start Game</button>
+    <button class="btn btn-primary" onclick="hangman()">Start Game</button>
 
     <h2><span id=winMessage></span></h2>
 
