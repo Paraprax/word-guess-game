@@ -137,8 +137,17 @@ function reset () {
                 updateWrongos ();
             
             }
+
+            /* future things to implement:
+            - a hangman-like image that updates to the DOM in pieces for each wrong answer
+            - individual images for each villain revealed
+            - a victory image 
+            - music cues
+            - better css.... much better css
+            */
             
         }
+
     }
 
 
